@@ -1,0 +1,15 @@
+{
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+	"entry": ["app/**/*.{ts,tsx}", "lib/**/*.{ts,tsx}", "!**/*.test.{ts,tsx}"],
+	"project": ["**/*.{ts,tsx}", "!**/*.test.{ts,tsx}", "!**/*.spec.{ts,tsx}"],
+	"ignore": ["**/*.d.ts", ".next/**", "node_modules/**"],
+	"ignoreDependencies": [
+		"tw-animate-css",
+		"class-variance-authority",
+		"lucide-react",
+		"tailwindcss"
+	],
+	"postcss": {
+		"config": ["postcss.config.{js,mjs,cjs}"]
+	}
+}

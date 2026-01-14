@@ -1,0 +1,234 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true,
+		"defaultBranch": "main"
+	},
+	"files": {
+		"ignoreUnknown": true,
+		"includes": [
+			"**",
+			"!**/.next",
+			"!**/node_modules",
+			"!**/dist",
+			"!**/build",
+			"!**/.vercel",
+			"!**/*.min.js",
+			"!**/coverage",
+			"!**/.claude"
+		]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab",
+		"indentWidth": 2,
+		"lineWidth": 100,
+		"lineEnding": "lf",
+		"formatWithErrors": false
+	},
+	"assist": { "actions": { "source": { "organizeImports": "on" } } },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"complexity": {
+				"noBannedTypes": "error",
+				"noExcessiveCognitiveComplexity": {
+					"level": "warn",
+					"options": {
+						"maxAllowedComplexity": 20
+					}
+				},
+				"noForEach": "off",
+				"noUselessTypeConstraint": "error",
+				"useSimplifiedLogicExpression": "warn"
+			},
+			"correctness": {
+				"noUnusedImports": "error",
+				"noUnusedVariables": "error",
+				"noUnusedFunctionParameters": "warn",
+				"useHookAtTopLevel": "error",
+				"noSwitchDeclarations": "error"
+			},
+			"nursery": {
+				"useSortedClasses": {
+					"level": "warn",
+					"options": {
+						"functions": ["cn", "clsx", "cva"]
+					}
+				}
+			},
+			"performance": {
+				"noAccumulatingSpread": "warn",
+				"noBarrelFile": "off",
+				"noReExportAll": "off"
+			},
+			"security": {
+				"noDangerouslySetInnerHtml": "warn"
+			},
+			"style": {
+				"noDefaultExport": "off",
+				"noNamespace": "error",
+				"noNegationElse": "warn",
+				"noNonNullAssertion": "warn",
+				"noParameterAssign": "error",
+				"useBlockStatements": "off",
+				"useCollapsedElseIf": "error",
+				"useConsistentArrayType": {
+					"level": "error",
+					"options": {
+						"syntax": "generic"
+					}
+				},
+				"useConst": "error",
+				"useDefaultSwitchClause": "warn",
+				"useExportType": "error",
+				"useFilenamingConvention": {
+					"level": "error",
+					"options": {
+						"strictCase": false,
+						"filenameCases": ["kebab-case", "export"]
+					}
+				},
+				"useForOf": "error",
+				"useFragmentSyntax": "error",
+				"useImportType": "error",
+				"useNamingConvention": {
+					"level": "warn",
+					"options": {
+						"strictCase": false,
+						"conventions": [
+							{
+								"selector": { "kind": "typeAlias" },
+								"formats": ["PascalCase"]
+							},
+							{
+								"selector": { "kind": "interface" },
+								"formats": ["PascalCase"]
+							},
+							{
+								"selector": { "kind": "enum" },
+								"formats": ["PascalCase"]
+							},
+							{
+								"selector": { "kind": "class" },
+								"formats": ["PascalCase"]
+							},
+							{
+								"selector": { "kind": "function" },
+								"formats": ["camelCase", "PascalCase"]
+							},
+							{
+								"selector": { "kind": "variable" },
+								"formats": ["camelCase", "PascalCase", "CONSTANT_CASE"]
+							}
+						]
+					}
+				},
+				"useNodejsImportProtocol": "error",
+				"useNumberNamespace": "error",
+				"useShorthandAssign": "error",
+				"useTemplate": "error",
+				"useArrayLiterals": "error"
+			},
+			"suspicious": {
+				"noArrayIndexKey": "warn",
+				"noAssignInExpressions": "error",
+				"noConsole": {
+					"level": "warn",
+					"options": {
+						"allow": ["warn", "error", "info", "debug"]
+					}
+				},
+				"noDoubleEquals": "error",
+				"noEmptyBlockStatements": "warn",
+				"noExplicitAny": "warn",
+				"noImplicitAnyLet": "error"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"jsxQuoteStyle": "double",
+			"semicolons": "asNeeded",
+			"trailingCommas": "es5",
+			"bracketSpacing": true,
+			"bracketSameLine": false,
+			"arrowParentheses": "always"
+		},
+		"globals": ["React"]
+	},
+	"json": {
+		"formatter": {
+			"indentStyle": "tab",
+			"trailingCommas": "none"
+		}
+	},
+	"css": {
+		"parser": {
+			"cssModules": true,
+			"tailwindDirectives": true
+		},
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "tab",
+			"lineWidth": 100
+		},
+		"linter": {
+			"enabled": true
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.config.ts", "**/*.config.js", "**/*.config.mjs"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": [
+				"**/app/**/page.tsx",
+				"**/app/**/layout.tsx",
+				"**/app/**/loading.tsx",
+				"**/app/**/error.tsx",
+				"**/app/**/not-found.tsx",
+				"**/app/**/template.tsx",
+				"**/app/**/default.tsx"
+			],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["**/route.ts", "**/route.tsx"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["**/*.d.ts"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedVariables": "off"
+					}
+				}
+			}
+		}
+	]
+}
