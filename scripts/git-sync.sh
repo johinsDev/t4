@@ -53,11 +53,15 @@ git commit -m "$COMMIT_MSG"
 
 # Push
 echo -e "${YELLOW}Pushing to origin/$BRANCH...${NC}"
-if git push origin "$BRANCH" 2>/dev/null; then
-	echo -e "${GREEN}Push successful${NC}"
+if git remote get-url origin &>/dev/null; then
+	if git push origin "$BRANCH" 2>/dev/null; then
+		echo -e "${GREEN}Push successful${NC}"
+	else
+		echo -e "${YELLOW}Setting upstream and pushing...${NC}"
+		git push -u origin "$BRANCH"
+	fi
 else
-	echo -e "${YELLOW}Setting upstream and pushing...${NC}"
-	git push -u origin "$BRANCH"
+	echo -e "${YELLOW}No remote 'origin' configured, skipping push${NC}"
 fi
 
 echo -e "${GREEN}✓ Sync complete!${NC}"
