@@ -41,28 +41,63 @@ No test framework is currently configured.
 
 - **Framework**: Next.js 16.1.1 with App Router (React 19)
 - **Language**: TypeScript (strict mode)
+- **API**: tRPC (end-to-end typesafe API)
+- **Database**: Drizzle ORM
+- **Validation**: Zod
 - **Styling**: Tailwind CSS 4 with CSS variables for theming
 - **UI Components**: Shadcn/ui (configured but components added as needed)
 - **Icons**: Lucide React
+- **State**: Zustand (client state)
+- **Background Jobs**: Trigger.dev
+- **Realtime**: PartyKit (future)
 - **Linting/Formatting**: Biome (replaces ESLint + Prettier)
 - **Git Hooks**: Lefthook (runs Biome + typecheck on commit, commitlint on commit message)
 - **Package Manager**: Bun
 
 ## Architecture
 
+> **Full architecture documentation**: See `.claude/skills/architect.md`
+
+This project uses **feature-based architecture**. Each feature is self-contained with server (router, service, repository) and client (components, hooks, store) code.
+
 ### Path Aliases
 
-Import paths use the `@/` alias mapped to the project root:
 ```typescript
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { UserCard, type User } from "@/features/users"
 ```
 
 ### Key Directories
 
-- `app/` - Next.js App Router pages and layouts
-- `lib/` - Shared utilities (includes `cn()` for className merging)
-- `components/` - React components (Shadcn/ui components go in `components/ui/`)
+- `app/` - Next.js App Router (routes only, minimal logic)
+- `features/` - Feature modules (THE CORE - see architect skill)
+- `components/` - Shared UI components
+- `lib/` - Shared utilities
+- `trpc/` - tRPC setup
+- `trigger/` - Background jobs
+
+### Feature Structure
+
+```
+src/features/<name>/
+├── server/           # Router, service, repository
+├── schemas/          # Zod schemas (source of truth)
+├── components/       # Feature components
+├── hooks/            # Feature hooks
+├── store/            # Zustand store (if needed)
+└── index.ts          # Public API barrel export
+```
+
+### Import Rules
+
+```typescript
+// ✅ Import from feature barrel
+import { UserCard, type User } from "@/features/users"
+
+// ❌ Never deep import into another feature
+import { UserCard } from "@/features/users/components/user-card"
+```
 
 ### Styling Pattern
 
