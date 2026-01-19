@@ -5,6 +5,7 @@
 		"lib/**/*.{ts,tsx}",
 		"trpc/**/*.{ts,tsx}",
 		"features/**/*.{ts,tsx}",
+		"db/**/*.ts",
 		"!**/*.test.{ts,tsx}"
 	],
 	"project": ["**/*.{ts,tsx}", "!**/*.test.{ts,tsx}", "!**/*.spec.{ts,tsx}"],
@@ -13,7 +14,8 @@
 		"tw-animate-css",
 		"class-variance-authority",
 		"lucide-react",
-		"tailwindcss"
+		"tailwindcss",
+		"dotenv"
 	],
 	"postcss": {
 		"config": ["postcss.config.{js,mjs,cjs}"]

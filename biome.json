@@ -17,7 +17,8 @@
 			"!**/.vercel",
 			"!**/*.min.js",
 			"!**/coverage",
-			"!**/.claude"
+			"!**/.claude",
+			"!**/drizzle"
 		]
 	},
 	"formatter": {
